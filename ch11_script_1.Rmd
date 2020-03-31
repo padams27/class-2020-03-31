@@ -49,10 +49,29 @@ We are interested in understanding how poverty is correlated with (and influence
 
 **Prompt:** What is the correlation coefficient of `poverty` and `less_than_hs`? What does it mean? What does it suggest about the relation between the percent of the population in poverty in 2018 and the percent of the population with less than a high school degree in 2014? 
 
+```{r}
+
+county %>% summarize(correlation = cor(poverty, less_than_hs))
+
+```
 
 # Scene 4
 
 **Prompt:** Use a scatterplot to visualize this data, including a straight line of best fit. The dependent variable is `poverty`. The independent variable is `less_than_hs`.
+
+
+```{r}
+
+ggplot(county, aes(less_than_hs, poverty, color = region)) + 
+  geom_jitter() + 
+  theme_classic() +
+  transition_manual(region) +
+  labs(title = "Scatterpoint of relationship of education levels and poverty rates",
+       y = "Percent of poverty",
+       x = "Percent of Adults without a High school Diploma")
+
+```
+
 
 
 # Scene 5
